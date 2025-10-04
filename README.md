@@ -1,8 +1,4 @@
 # Vector 🕵️‍♂️
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![Profile views](https://komarev.com/ghpvc/?username=thesaderror&color=brightgreen)
-
-![Vector Logo](https://media.discordapp.net/attachments/1028720953515057162/1028914619219181609/vector.png)
 
 **Vector** is a lightweight OSINT/doxing utility to collect publicly available information about targets (usernames, emails, IPs), discover related social media accounts, check for leaks, and visualize relationships with a graph visualizer. This tool is intended for educational and authorized use only.
 
@@ -91,15 +87,15 @@ vector/
    Respect rate limits and terms of service for any third-party APIs.
  
  # 🖼️ Preview
- # CLI social media OSINT scan (Style: E0)
+ # CLI social media OSINT scan 
  - <img width="864" height="889" alt="image" src="https://github.com/user-attachments/assets/d488b665-4bbf-408e-905a-ab9ea98e89c7" />
    <img width="716" height="722" alt="image" src="https://github.com/user-attachments/assets/1b786412-9831-4b57-84e4-2ce9d95e0471" />
 
 
- # CLI Email Leak Leak Search (Style: E0)
+ # CLI Email Leak Leak Search 
  -  <img width="856" height="483" alt="image" src="https://github.com/user-attachments/assets/03b9123e-9d34-4171-93ae-643518efd0e5" />
  
- # CLI Vector geo info sniper (Style: E0)
+ # CLI Vector geo info sniper 
  - <img width="694" height="414" alt="image" src="https://github.com/user-attachments/assets/d88af67d-f7e1-4de0-97a9-afd2bdb58502" />
 
  # Graph GUI examples
@@ -129,6 +125,7 @@ vector/
  # 📫 Contact / Links
   - Project links and references: links.md
     Edit config.json for custom settings
+
 
 
 
