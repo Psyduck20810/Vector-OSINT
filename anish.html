@@ -1,0 +1,258 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #29292E;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+             #loadingBar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width: 100%;
+                 height: 750px;
+                 background-color:rgba(200,200,200,0.8);
+                 -webkit-transition: all 0.5s ease;
+                 -moz-transition: all 0.5s ease;
+                 -ms-transition: all 0.5s ease;
+                 -o-transition: all 0.5s ease;
+                 transition: all 0.5s ease;
+                 opacity:1;
+             }
+
+             #bar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width:20px;
+                 height:20px;
+                 margin:auto auto auto auto;
+                 border-radius:11px;
+                 border:2px solid rgba(30,30,30,0.05);
+                 background: rgb(0, 173, 246); /* Old browsers */
+                 box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+             }
+
+             #border {
+                 position:absolute;
+                 top:10px;
+                 left:10px;
+                 width:500px;
+                 height:23px;
+                 margin:auto auto auto auto;
+                 box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+                 border-radius:10px;
+             }
+
+             #text {
+                 position:absolute;
+                 top:8px;
+                 left:530px;
+                 width:30px;
+                 height:50px;
+                 margin:auto auto auto auto;
+                 font-size:22px;
+                 color: #000000;
+             }
+
+             div.outerBorder {
+                 position:relative;
+                 top:400px;
+                 width:600px;
+                 height:44px;
+                 margin:auto auto auto auto;
+                 border:8px solid rgba(0,0,0,0.1);
+                 background: rgb(252,252,252); /* Old browsers */
+                 background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+                 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+                 background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+                 background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+                 background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+                 background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+                 border-radius:72px;
+                 box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+             }
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+            <div id="loadingBar">
+              <div class="outerBorder">
+                <div id="text">0%</div>
+                <div id="border">
+                  <div id="bar"></div>
+                </div>
+              </div>
+            </div>
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#E74C3C", "font": {"color": "#FFFFFF"}, "id": 0, "label": "anish", "shape": "dot"}, {"color": "#6C3483", "font": {"color": "#FFFFFF"}, "id": "social", "label": "Social Media", "shape": "dot"}, {"color": "#6C3483", "font": {"color": "#FFFFFF"}, "id": "leaks", "label": "Leaks", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks0", "label": "Twitter.com (scraping data)", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks1", "label": "VimeWorld.ru", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks2", "label": "Forums.Cdprojektred.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks3", "label": "DLH.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks4", "label": "Pokemoncreed.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks5", "label": "Canva.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks6", "label": "Forbes.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks7", "label": "Poshmark.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks8", "label": "PSX-Scene.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks9", "label": "Datpiff.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks10", "label": "Nextgenupdate.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks11", "label": "Jefit.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks12", "label": "ForumCommunity.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks13", "label": "CDProjektRed.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks14", "label": "MeFeedia.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks15", "label": "Tout.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks16", "label": "Epicbot.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks17", "label": "Kinokong.org", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks18", "label": "AndroidForums.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks19", "label": "WiiUISO.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks20", "label": "MajorGeeks.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks21", "label": "PS3Hax.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks22", "label": "BlackHatWorld.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks23", "label": "TrueFire.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks24", "label": "Quidd.co (2019)", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks25", "label": "Strongholdkingdoms.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks26", "label": "OnVerse.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks27", "label": "Forum.CallOfGods.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks28", "label": "Sprashivai.ru", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks29", "label": "GamerzPlanet.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks30", "label": "MoDaCo.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks31", "label": "Mobifriends", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks32", "label": "Ogusers", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks33", "label": "ArmorGames.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks34", "label": "HackForums.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks35", "label": "Board.freeones.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks36", "label": "Bolt.cd", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks37", "label": "VBForums.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks38", "label": "500px.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks39", "label": "ArmyForceOnline.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks40", "label": "Taringa.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks41", "label": "Last.fm", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks42", "label": "Scam.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks43", "label": "iMesh.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks44", "label": "Learnable.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks45", "label": "StockX.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks46", "label": "Ria.ru", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks47", "label": "JeepForum.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks48", "label": "R2Games.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks49", "label": "Telefon-Treff.de", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks50", "label": "Bitly.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks51", "label": "Mpgh.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks52", "label": "Trackitt.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks53", "label": "Gatehub.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks54", "label": "Leet.cc", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks55", "label": "LiveJournal", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks56", "label": "Dailymotion.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks57", "label": "Edaboard.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks58", "label": "SumoTorrent.sx", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks59", "label": "forums.idcgames.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks60", "label": "DaFont.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks61", "label": "Duelingnetwork.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks62", "label": "Waydate.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks63", "label": "MovieBoxPro.app", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks64", "label": "EmuParadise.me", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks65", "label": "Deezer.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks66", "label": "Gamesbox.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks67", "label": "Storybird.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks68", "label": "Kixify.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks69", "label": "Demonforums.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks70", "label": "Gaadi.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks71", "label": "Zomato.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks72", "label": "vkmix.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks73", "label": "Mac-forums.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks74", "label": "8Tracks.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks75", "label": "Crimecraft.mayngames.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks76", "label": "Hongfire.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks77", "label": "Warmane.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks78", "label": "CheapAssGamer.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks79", "label": "CrackingForum.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks80", "label": "Bookcrossing.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks81", "label": "Lifebear.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks82", "label": "Albumwash.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks83", "label": "Evony.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks84", "label": "OwnedCore.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks85", "label": "Anime-Planet.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks86", "label": "Openraid.org", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks87", "label": "MangaFox.me", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks88", "label": "Stealer Logs", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks89", "label": "Avast.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks90", "label": "Xbox360ISO.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks91", "label": "NexusMods.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks92", "label": "CashCrate.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks93", "label": "AlpineReplay.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks94", "label": "TechnicPack.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks95", "label": "Funny-Games.biz", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks96", "label": "Tunngle.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks97", "label": "TheBot.net", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks98", "label": "Funimation.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks99", "label": "Mate1.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks100", "label": "DailyQuiz.me", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks101", "label": "Xpgamesaves.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks102", "label": "MyFitnessPal.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks103", "label": "PokeCommunity.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks104", "label": "dns-shop.ru", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks105", "label": "Zynga.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks106", "label": "WeHeartIt.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks107", "label": "MechoDownload.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks108", "label": "Stickam.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks109", "label": "Raidforums.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks110", "label": "Gsmhosting.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks111", "label": "PESGaming.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks112", "label": "MyRepoSpace.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks113", "label": "Fotolog.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks114", "label": "Fling.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks115", "label": "Konduit", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks116", "label": "PSPISO.com", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks117", "label": "Quidd.co (2020)", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks118", "label": "Glory4Gamers.com / Nicecactus.gg", "shape": "dot"}, {"color": "#28B463", "font": {"color": "#FFFFFF"}, "id": "leaks119", "label": "CouponMom / ArmorGames", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social0", "label": "Instagram", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social1", "label": "Github", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social2", "label": "Tumblr", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social3", "label": "Devintart", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social4", "label": "AsciiNema", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social5", "label": "Snapchat", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social6", "label": "Flickr", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social7", "label": "Steam", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social8", "label": "Steemit", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social9", "label": "Duolingo", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social10", "label": "Patreon", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social11", "label": "Chess", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social12", "label": "Anime-Planet", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social13", "label": "SoundCloud", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social14", "label": "CareerHabr", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social15", "label": "Dev.TO", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social16", "label": "Codecedemy", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social17", "label": "CodeChef", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social18", "label": "Cracked", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social19", "label": "Codeforces", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social20", "label": "Leetcode", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social21", "label": "HackerNews", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social22", "label": "Themeforest", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social23", "label": "CoderWall", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social24", "label": "Gravatar", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social25", "label": "Quora", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social26", "label": "Disqus", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social27", "label": "Creative-Market", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social28", "label": "Dribble", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social29", "label": "Eyeem", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social30", "label": "Ello", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social31", "label": "Gitlab", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social32", "label": "Gumroad", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social33", "label": "Houzz", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social34", "label": "Imgur", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social35", "label": "Instructables", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social36", "label": "Tinder", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social37", "label": "TikTok", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social38", "label": "7CUP", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social39", "label": "9GAG", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social40", "label": "Airlines", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social41", "label": "Dev Apple", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social42", "label": "Discuss Apple", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social43", "label": "Ardunio", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social44", "label": "Artstation", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social45", "label": "Audio Jungle", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social46", "label": "Behance", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social47", "label": "Bikemap", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social48", "label": "Bitbucket", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social49", "label": "BlogSpot", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social50", "label": "Buymeacoffe", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social51", "label": "Championat", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social52", "label": "ClubHause", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social53", "label": "Codepen", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social54", "label": "Crowdin", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social55", "label": "Etsy", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social56", "label": "Cults3d", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social57", "label": "Elastic", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social58", "label": "DockerHub", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social59", "label": "FinanzeFrage", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social60", "label": "Fameswap", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social61", "label": "FlightRadar", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social62", "label": "FortniteTracker", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social63", "label": "Freelancer", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social64", "label": "Freesound", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social65", "label": "Gamespot", "shape": "dot"}, {"color": "#2E86C1", "font": {"color": "#FFFFFF"}, "id": "social66", "label": "Genius", "shape": "dot"}]);
+                  edges = new vis.DataSet([{"from": 0, "size": 2, "to": "social"}, {"from": 0, "size": 2, "to": "leaks"}, {"from": "leaks", "to": "leaks0"}, {"from": "leaks", "to": "leaks1"}, {"from": "leaks", "to": "leaks2"}, {"from": "leaks", "to": "leaks3"}, {"from": "leaks", "to": "leaks4"}, {"from": "leaks", "to": "leaks5"}, {"from": "leaks", "to": "leaks6"}, {"from": "leaks", "to": "leaks7"}, {"from": "leaks", "to": "leaks8"}, {"from": "leaks", "to": "leaks9"}, {"from": "leaks", "to": "leaks10"}, {"from": "leaks", "to": "leaks11"}, {"from": "leaks", "to": "leaks12"}, {"from": "leaks", "to": "leaks13"}, {"from": "leaks", "to": "leaks14"}, {"from": "leaks", "to": "leaks15"}, {"from": "leaks", "to": "leaks16"}, {"from": "leaks", "to": "leaks17"}, {"from": "leaks", "to": "leaks18"}, {"from": "leaks", "to": "leaks19"}, {"from": "leaks", "to": "leaks20"}, {"from": "leaks", "to": "leaks21"}, {"from": "leaks", "to": "leaks22"}, {"from": "leaks", "to": "leaks23"}, {"from": "leaks", "to": "leaks24"}, {"from": "leaks", "to": "leaks25"}, {"from": "leaks", "to": "leaks26"}, {"from": "leaks", "to": "leaks27"}, {"from": "leaks", "to": "leaks28"}, {"from": "leaks", "to": "leaks29"}, {"from": "leaks", "to": "leaks30"}, {"from": "leaks", "to": "leaks31"}, {"from": "leaks", "to": "leaks32"}, {"from": "leaks", "to": "leaks33"}, {"from": "leaks", "to": "leaks34"}, {"from": "leaks", "to": "leaks35"}, {"from": "leaks", "to": "leaks36"}, {"from": "leaks", "to": "leaks37"}, {"from": "leaks", "to": "leaks38"}, {"from": "leaks", "to": "leaks39"}, {"from": "leaks", "to": "leaks40"}, {"from": "leaks", "to": "leaks41"}, {"from": "leaks", "to": "leaks42"}, {"from": "leaks", "to": "leaks43"}, {"from": "leaks", "to": "leaks44"}, {"from": "leaks", "to": "leaks45"}, {"from": "leaks", "to": "leaks46"}, {"from": "leaks", "to": "leaks47"}, {"from": "leaks", "to": "leaks48"}, {"from": "leaks", "to": "leaks49"}, {"from": "leaks", "to": "leaks50"}, {"from": "leaks", "to": "leaks51"}, {"from": "leaks", "to": "leaks52"}, {"from": "leaks", "to": "leaks53"}, {"from": "leaks", "to": "leaks54"}, {"from": "leaks", "to": "leaks55"}, {"from": "leaks", "to": "leaks56"}, {"from": "leaks", "to": "leaks57"}, {"from": "leaks", "to": "leaks58"}, {"from": "leaks", "to": "leaks59"}, {"from": "leaks", "to": "leaks60"}, {"from": "leaks", "to": "leaks61"}, {"from": "leaks", "to": "leaks62"}, {"from": "leaks", "to": "leaks63"}, {"from": "leaks", "to": "leaks64"}, {"from": "leaks", "to": "leaks65"}, {"from": "leaks", "to": "leaks66"}, {"from": "leaks", "to": "leaks67"}, {"from": "leaks", "to": "leaks68"}, {"from": "leaks", "to": "leaks69"}, {"from": "leaks", "to": "leaks70"}, {"from": "leaks", "to": "leaks71"}, {"from": "leaks", "to": "leaks72"}, {"from": "leaks", "to": "leaks73"}, {"from": "leaks", "to": "leaks74"}, {"from": "leaks", "to": "leaks75"}, {"from": "leaks", "to": "leaks76"}, {"from": "leaks", "to": "leaks77"}, {"from": "leaks", "to": "leaks78"}, {"from": "leaks", "to": "leaks79"}, {"from": "leaks", "to": "leaks80"}, {"from": "leaks", "to": "leaks81"}, {"from": "leaks", "to": "leaks82"}, {"from": "leaks", "to": "leaks83"}, {"from": "leaks", "to": "leaks84"}, {"from": "leaks", "to": "leaks85"}, {"from": "leaks", "to": "leaks86"}, {"from": "leaks", "to": "leaks87"}, {"from": "leaks", "to": "leaks88"}, {"from": "leaks", "to": "leaks89"}, {"from": "leaks", "to": "leaks90"}, {"from": "leaks", "to": "leaks91"}, {"from": "leaks", "to": "leaks92"}, {"from": "leaks", "to": "leaks93"}, {"from": "leaks", "to": "leaks94"}, {"from": "leaks", "to": "leaks95"}, {"from": "leaks", "to": "leaks96"}, {"from": "leaks", "to": "leaks97"}, {"from": "leaks", "to": "leaks98"}, {"from": "leaks", "to": "leaks99"}, {"from": "leaks", "to": "leaks100"}, {"from": "leaks", "to": "leaks101"}, {"from": "leaks", "to": "leaks102"}, {"from": "leaks", "to": "leaks103"}, {"from": "leaks", "to": "leaks104"}, {"from": "leaks", "to": "leaks105"}, {"from": "leaks", "to": "leaks106"}, {"from": "leaks", "to": "leaks107"}, {"from": "leaks", "to": "leaks108"}, {"from": "leaks", "to": "leaks109"}, {"from": "leaks", "to": "leaks110"}, {"from": "leaks", "to": "leaks111"}, {"from": "leaks", "to": "leaks112"}, {"from": "leaks", "to": "leaks113"}, {"from": "leaks", "to": "leaks114"}, {"from": "leaks", "to": "leaks115"}, {"from": "leaks", "to": "leaks116"}, {"from": "leaks", "to": "leaks117"}, {"from": "leaks", "to": "leaks118"}, {"from": "leaks", "to": "leaks119"}, {"from": "social", "to": "social0"}, {"from": "social", "to": "social1"}, {"from": "social", "to": "social2"}, {"from": "social", "to": "social3"}, {"from": "social", "to": "social4"}, {"from": "social", "to": "social5"}, {"from": "social", "to": "social6"}, {"from": "social", "to": "social7"}, {"from": "social", "to": "social8"}, {"from": "social", "to": "social9"}, {"from": "social", "to": "social10"}, {"from": "social", "to": "social11"}, {"from": "social", "to": "social12"}, {"from": "social", "to": "social13"}, {"from": "social", "to": "social14"}, {"from": "social", "to": "social15"}, {"from": "social", "to": "social16"}, {"from": "social", "to": "social17"}, {"from": "social", "to": "social18"}, {"from": "social", "to": "social19"}, {"from": "social", "to": "social20"}, {"from": "social", "to": "social21"}, {"from": "social", "to": "social22"}, {"from": "social", "to": "social23"}, {"from": "social", "to": "social24"}, {"from": "social", "to": "social25"}, {"from": "social", "to": "social26"}, {"from": "social", "to": "social27"}, {"from": "social", "to": "social28"}, {"from": "social", "to": "social29"}, {"from": "social", "to": "social30"}, {"from": "social", "to": "social31"}, {"from": "social", "to": "social32"}, {"from": "social", "to": "social33"}, {"from": "social", "to": "social34"}, {"from": "social", "to": "social35"}, {"from": "social", "to": "social36"}, {"from": "social", "to": "social37"}, {"from": "social", "to": "social38"}, {"from": "social", "to": "social39"}, {"from": "social", "to": "social40"}, {"from": "social", "to": "social41"}, {"from": "social", "to": "social42"}, {"from": "social", "to": "social43"}, {"from": "social", "to": "social44"}, {"from": "social", "to": "social45"}, {"from": "social", "to": "social46"}, {"from": "social", "to": "social47"}, {"from": "social", "to": "social48"}, {"from": "social", "to": "social49"}, {"from": "social", "to": "social50"}, {"from": "social", "to": "social51"}, {"from": "social", "to": "social52"}, {"from": "social", "to": "social53"}, {"from": "social", "to": "social54"}, {"from": "social", "to": "social55"}, {"from": "social", "to": "social56"}, {"from": "social", "to": "social57"}, {"from": "social", "to": "social58"}, {"from": "social", "to": "social59"}, {"from": "social", "to": "social60"}, {"from": "social", "to": "social61"}, {"from": "social", "to": "social62"}, {"from": "social", "to": "social63"}, {"from": "social", "to": "social64"}, {"from": "social", "to": "social65"}, {"from": "social", "to": "social66"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "repulsion": {
+            "centralGravity": 0.2,
+            "damping": 0.09,
+            "nodeDistance": 200,
+            "springConstant": 0.05,
+            "springLength": 300
+        },
+        "solver": "repulsion",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+                      network.on("stabilizationProgress", function(params) {
+                          document.getElementById('loadingBar').removeAttribute("style");
+                          var maxWidth = 496;
+                          var minWidth = 20;
+                          var widthFactor = params.iterations/params.total;
+                          var width = Math.max(minWidth,maxWidth * widthFactor);
+                          document.getElementById('bar').style.width = width + 'px';
+                          document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+                      });
+                      network.once("stabilizationIterationsDone", function() {
+                          document.getElementById('text').innerHTML = '100%';
+                          document.getElementById('bar').style.width = '496px';
+                          document.getElementById('loadingBar').style.opacity = 0;
+                          // really clean the dom element
+                          setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+                      });
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
