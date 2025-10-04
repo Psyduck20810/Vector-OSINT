@@ -38,18 +38,8 @@ vector/
 - Python 3.8+
 - `pip`
 
-### Linux / macOS (recommended)
-```bash
-git clone https://github.com/thesaderror/vector.git
-cd vector
-python -m venv venv            # optional but recommended
-source venv/bin/activate      # on Windows use: venv\Scripts\activate
-pip install -r requirements.txt
-python vector.py v            # run in verbose / default mode
-
-Windows
-
-Click the Code → Download ZIP button on GitHub, extract the archive and open the folder in your terminal, or:
+###Windows
+Option A — Using Git:
 
 git clone https://github.com/thesaderror/vector.git
 cd vector
@@ -58,93 +48,14 @@ venv\Scripts\activate
 pip install -r requirements.txt
 python vector.py v
 
-⚙️ Configuration
 
-Edit config.json to set API keys, toggles for modules, or output locations. Example:
+Option B — Download ZIP:
 
-{
-  "pinata_api_key": "",
-  "pinata_secret": "",
-  "save_results": true,
-  "output_dir": "outputs"
-}
+Click Code → Download ZIP on GitHub.
 
+Extract the archive and open the folder in a terminal.
 
-Also check links.md for configurable social endpoints and any provider lists.
-
-❓ Usage Examples
-Username scan (OSINT)
-python vector.py username <target_username>
-# e.g.
-python vector.py username john_doe
-
-Email scan
-python vector.py email <target_email>
-# e.g.
-python vector.py email example@domain.com
-
-IP Info
-python vector.py ip <ip_address>
-# e.g.
-python vector.py ip 8.8.8.8
-
-Notes
-
-Some modules may require API keys — configure them in config.json.
-
-Use the help flag to see available options:
-
-python vector.py --help
-
-🖼️ Preview
-CLI social media OSINT scan (Style: E0)
-<img width="815" height="903" alt="image" src="https://github.com/user-attachments/assets/c8f9e220-2661-4e39-9a99-a5171f3b7f2f" />
-<img width="944" height="850" alt="image" src="https://github.com/user-attachments/assets/b47b2151-842c-4100-8360-ff125d2ae5c6" />
-
-CLI Gmail Leak Checker (Style: E0)
-<img width="790" height="514" alt="image" src="https://github.com/user-attachments/assets/6692355a-c457-4fad-bb0b-a275092d2386" />
-
-CLI Vector geo info sniper (Style: E0)
-<img width="727" height="422" alt="image" src="https://github.com/user-attachments/assets/e18374c0-42ba-42ca-a0fd-05cb32769a0f" />
-
-Graph GUI examples
-<img width="557" height="865" alt="image" src="https://github.com/user-attachments/assets/29b38d13-81a7-40d6-93f4-e860db0ee197" />
-<img width="921" height="858" alt="image" src="https://github.com/user-attachments/assets/dfd26567-96ba-4b4a-8ef8-503844155523" />
-
-🧾 Help & Tips
-
-Always test on accounts you own or have explicit permission to analyze.
-
-Rate limits may apply for certain service queries — respect provider rules.
-
-For best results, configure any available API keys in config.json.
-
-🤝 Contributing
-
-Contributions, issues and feature requests are welcome. Please:
-
-Fork the repository
-
-Create a feature branch (git checkout -b feature/your-feature)
-
-Commit your changes (git commit -m "Add feature")
-
-Push to the branch (git push origin feature/your-feature)
-
-Open a Pull Request
-
-📜 License & Disclaimer
-
-Disclaimer: This tool is for educational and authorized testing only. The author and contributors are not responsible for misuse.
-Make sure you have permission before scanning or collecting information about any person or system.
-
-Author & Credits: originally by Thesaderror and H4wK1n6 (as stated in original project).
-
-📫 Contact / Links
-
-Project links and references: links.md
-
-Edit config.json for custom settings
+Create/activate a virtual environment and install requirements as above.
 
 
 
