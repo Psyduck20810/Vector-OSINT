@@ -38,24 +38,20 @@ vector/
 - Python 3.8+
 - `pip`
 
-###Windows
-Option A — Using Git:
+### Windows
+- Option A — Using Git:
+  git clone https://github.com/thesaderror/vector.git
+  cd vector
+  python -m venv venv
+  venv\Scripts\activate
+  pip install -r requirements.txt
+  python vector.py v
 
-git clone https://github.com/thesaderror/vector.git
-cd vector
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-python vector.py v
+-Option B — Download ZIP:
+  Click Code → Download ZIP on GitHub.
+  Extract the archive and open the folder in a terminal.
+  Create/activate a virtual environment and install requirements as above.
 
-
-Option B — Download ZIP:
-
-Click Code → Download ZIP on GitHub.
-
-Extract the archive and open the folder in a terminal.
-
-Create/activate a virtual environment and install requirements as above.
 
 
 
