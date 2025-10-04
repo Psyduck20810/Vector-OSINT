@@ -73,22 +73,37 @@ vector/
 
 Username scan (OSINT)
 - python vector.py username <target_username>
-  # e.g.
+   e.g.
   python vector.py username john_doe
 
 Email scan
 - python vector.py email <target_email>
-  # e.g.
+   e.g.
   python vector.py email example@domain.com
 
 IP Info
 - python vector.py ip <ip_address>
-  # e.g.
+   e.g.
   python vector.py ip 8.8.8.8
 
 Notes
 - Some modules may require external API keys or credentials — set them in config.json.
   Respect rate limits and terms of service for any third-party APIs.
+
+🖼️ Preview
+CLI social media OSINT scan (Style: E0)
+- <img width="864" height="889" alt="image" src="https://github.com/user-attachments/assets/d488b665-4bbf-408e-905a-ab9ea98e89c7" />
+  <img width="716" height="722" alt="image" src="https://github.com/user-attachments/assets/1b786412-9831-4b57-84e4-2ce9d95e0471" />
+
+
+CLI Email Leak Leak Search (Style: E0)
+-  <img width="856" height="483" alt="image" src="https://github.com/user-attachments/assets/03b9123e-9d34-4171-93ae-643518efd0e5" />
+
+CLI Vector geo info sniper (Style: E0)
+- <img width="694" height="414" alt="image" src="https://github.com/user-attachments/assets/d88af67d-f7e1-4de0-97a9-afd2bdb58502" />
+
+
+
 
 
 
