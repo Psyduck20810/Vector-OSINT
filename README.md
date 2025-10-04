@@ -48,21 +48,6 @@ vector/
   Extract the archive and open the folder in a terminal.
   Create/activate a virtual environment and install requirements as above.
 
-# ⚙️ Configuration
-- Edit config.json to set API keys, toggles for modules, or output locations.
-
-  Example config.json:
-
-  {
-    "pinata_api_key": "",
-    "pinata_secret": "",
-    "save_results": true,
-    "output_dir": "outputs"
-  }
-
-
-  Also check links.md for configurable social endpoints and provider lists.
-
 # ❓ Usage Examples
 - General help
   python vector.py --help
@@ -125,6 +110,7 @@ vector/
  # 📫 Contact / Links
   - Project links and references: links.md
     Edit config.json for custom settings
+
 
 
 
