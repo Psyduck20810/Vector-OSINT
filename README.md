@@ -71,64 +71,65 @@ vector/
 - General help
   python vector.py --help
 
-# Username scan (OSINT)
-- python vector.py username <target_username>
+ # Username scan (OSINT)
+ - python vector.py username <target_username>
+    e.g.
+   python vector.py username john_doe
+ 
+ # Email scan
+ - python vector.py email <target_email>
    e.g.
-  python vector.py username john_doe
+   python vector.py email example@domain.com
 
-# Email scan
-- python vector.py email <target_email>
+ # IP Info
+ - python vector.py ip <ip_address>
    e.g.
-  python vector.py email example@domain.com
+   python vector.py ip 8.8.8.8
 
-# IP Info
-- python vector.py ip <ip_address>
-   e.g.
-  python vector.py ip 8.8.8.8
-
-# Notes
-- Some modules may require external API keys or credentials — set them in config.json.
-  Respect rate limits and terms of service for any third-party APIs.
-
-# 🖼️ Preview
-# CLI social media OSINT scan (Style: E0)
-- <img width="864" height="889" alt="image" src="https://github.com/user-attachments/assets/d488b665-4bbf-408e-905a-ab9ea98e89c7" />
-  <img width="716" height="722" alt="image" src="https://github.com/user-attachments/assets/1b786412-9831-4b57-84e4-2ce9d95e0471" />
+ # Notes
+ - Some modules may require external API keys or credentials — set them in config.json.
+   Respect rate limits and terms of service for any third-party APIs.
+ 
+ # 🖼️ Preview
+ # CLI social media OSINT scan (Style: E0)
+ - <img width="864" height="889" alt="image" src="https://github.com/user-attachments/assets/d488b665-4bbf-408e-905a-ab9ea98e89c7" />
+   <img width="716" height="722" alt="image" src="https://github.com/user-attachments/assets/1b786412-9831-4b57-84e4-2ce9d95e0471" />
 
 
-# CLI Email Leak Leak Search (Style: E0)
--  <img width="856" height="483" alt="image" src="https://github.com/user-attachments/assets/03b9123e-9d34-4171-93ae-643518efd0e5" />
+ # CLI Email Leak Leak Search (Style: E0)
+ -  <img width="856" height="483" alt="image" src="https://github.com/user-attachments/assets/03b9123e-9d34-4171-93ae-643518efd0e5" />
+ 
+ # CLI Vector geo info sniper (Style: E0)
+ - <img width="694" height="414" alt="image" src="https://github.com/user-attachments/assets/d88af67d-f7e1-4de0-97a9-afd2bdb58502" />
 
-# CLI Vector geo info sniper (Style: E0)
-- <img width="694" height="414" alt="image" src="https://github.com/user-attachments/assets/d88af67d-f7e1-4de0-97a9-afd2bdb58502" />
+ # Graph GUI examples
+ - <img width="625" height="856" alt="image" src="https://github.com/user-attachments/assets/aac1d86c-1f39-4e2c-8338-08318e76b051" />
+   <img width="1233" height="805" alt="image" src="https://github.com/user-attachments/assets/9f0b71cc-b02d-4e3f-ad48-fbd49061f180" />
+ 
+ # 🧾 Help & Tips
+ - Always test on accounts you own or have explicit permission to analyze.
+   Rate limits may apply for certain service queries — respect provider rules.
+   For best results, configure any available API keys in config.json.  
 
-# Graph GUI examples
-- <img width="625" height="856" alt="image" src="https://github.com/user-attachments/assets/aac1d86c-1f39-4e2c-8338-08318e76b051" />
-  <img width="1233" height="805" alt="image" src="https://github.com/user-attachments/assets/9f0b71cc-b02d-4e3f-ad48-fbd49061f180" />
+ # 🤝 Contributing
+ - Contributions, issues and feature requests are welcome. Please:
+   1. Fork the repository
+   2. Create a feature branch
+      git checkout -b feature/your-feature
+   3. Commit your changes
+      git commit -m "Add feature"
+   4. Push to your branch
+      git push origin feature/your-feature
+   5. Open a Pull Request
 
-# 🧾 Help & Tips
-- Always test on accounts you own or have explicit permission to analyze.
-  Rate limits may apply for certain service queries — respect provider rules.
-  For best results, configure any available API keys in config.json.  
+  # 📜 License & Disclaimer
+  - Disclaimer: This tool is for educational and authorized testing only. The author and contributors are not responsible for misuse. Make sure you have explicit permission before scanning     or collecting information about any person      or system.
+    Author & Credits: originally by Thesaderror and H4wK1n6 (as stated in original project).
 
-# 🤝 Contributing
-- Contributions, issues and feature requests are welcome. Please:
-  1. Fork the repository
-  2. Create a feature branch
-     git checkout -b feature/your-feature
-  3. Commit your changes
-     git commit -m "Add feature"
-  4. Push to your branch
-     git push origin feature/your-feature
-  5. Open a Pull Request
+ # 📫 Contact / Links
+  - Project links and references: links.md
+    Edit config.json for custom settings
 
- # 📜 License & Disclaimer
- - Disclaimer: This tool is for educational and authorized testing only. The author and contributors are not responsible for misuse. Make sure you have explicit permission before scanning     or collecting information about any person or system.
-   Author & Credits: originally by Thesaderror and H4wK1n6 (as stated in original project).
-
-# 📫 Contact / Links
- - Project links and references: links.md
-   Edit config.json for custom settings
 
 
 
