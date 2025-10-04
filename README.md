@@ -55,17 +55,41 @@ vector/
 ⚙️ Configuration
 - Edit config.json to set API keys, toggles for modules, or output locations.
 
-Example config.json:
+  Example config.json:
 
-{
-  "pinata_api_key": "",
-  "pinata_secret": "",
-  "save_results": true,
-  "output_dir": "outputs"
-}
+  {
+    "pinata_api_key": "",
+    "pinata_secret": "",
+    "save_results": true,
+    "output_dir": "outputs"
+  }
 
 
-Also check links.md for configurable social endpoints and provider lists.
+  Also check links.md for configurable social endpoints and provider lists.
+
+❓ Usage Examples
+- General help
+  python vector.py --help
+
+Username scan (OSINT)
+- python vector.py username <target_username>
+  # e.g.
+  python vector.py username john_doe
+
+Email scan
+- python vector.py email <target_email>
+  # e.g.
+  python vector.py email example@domain.com
+
+IP Info
+- python vector.py ip <ip_address>
+  # e.g.
+  python vector.py ip 8.8.8.8
+
+Notes
+- Some modules may require external API keys or credentials — set them in config.json.
+  Respect rate limits and terms of service for any third-party APIs.
+
 
 
 
