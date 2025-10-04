@@ -102,6 +102,12 @@ CLI Email Leak Leak Search (Style: E0)
 CLI Vector geo info sniper (Style: E0)
 - <img width="694" height="414" alt="image" src="https://github.com/user-attachments/assets/d88af67d-f7e1-4de0-97a9-afd2bdb58502" />
 
+# Graph GUI examples
+- <img width="625" height="856" alt="image" src="https://github.com/user-attachments/assets/aac1d86c-1f39-4e2c-8338-08318e76b051" />
+  <img width="1233" height="805" alt="image" src="https://github.com/user-attachments/assets/9f0b71cc-b02d-4e3f-ad48-fbd49061f180" />
+
+
+
 
 
 
