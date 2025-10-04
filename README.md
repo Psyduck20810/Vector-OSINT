@@ -48,7 +48,7 @@ vector/
   Extract the archive and open the folder in a terminal.
   Create/activate a virtual environment and install requirements as above.
 
-# ❓ Usage Examples
+# ❓Usage Examples
 - General help
   python vector.py --help
 
@@ -110,6 +110,7 @@ vector/
  # 📫 Contact / Links
   - Project links and references: links.md
     Edit config.json for custom settings
+
 
 
 
