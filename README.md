@@ -32,13 +32,13 @@ vector/
 
 ---
 
-## 🚀 Quick Start
+#🚀 Quick Start
 
-### Requirements
+#Requirements
 - Python 3.8+
 - `pip`
 
-### Windows
+#Windows
 - Option A — Using Git:
   git clone https://github.com/thesaderror/vector.git
   cd vector
@@ -52,7 +52,7 @@ vector/
   Extract the archive and open the folder in a terminal.
   Create/activate a virtual environment and install requirements as above.
 
-⚙️ Configuration
+#⚙️ Configuration
 - Edit config.json to set API keys, toggles for modules, or output locations.
 
   Example config.json:
@@ -67,44 +67,45 @@ vector/
 
   Also check links.md for configurable social endpoints and provider lists.
 
-❓ Usage Examples
+#❓ Usage Examples
 - General help
   python vector.py --help
 
-Username scan (OSINT)
+#Username scan (OSINT)
 - python vector.py username <target_username>
    e.g.
   python vector.py username john_doe
 
-Email scan
+#Email scan
 - python vector.py email <target_email>
    e.g.
   python vector.py email example@domain.com
 
-IP Info
+#IP Info
 - python vector.py ip <ip_address>
    e.g.
   python vector.py ip 8.8.8.8
 
-Notes
+#Notes
 - Some modules may require external API keys or credentials — set them in config.json.
   Respect rate limits and terms of service for any third-party APIs.
 
-🖼️ Preview
-CLI social media OSINT scan (Style: E0)
+#🖼️ Preview
+#CLI social media OSINT scan (Style: E0)
 - <img width="864" height="889" alt="image" src="https://github.com/user-attachments/assets/d488b665-4bbf-408e-905a-ab9ea98e89c7" />
   <img width="716" height="722" alt="image" src="https://github.com/user-attachments/assets/1b786412-9831-4b57-84e4-2ce9d95e0471" />
 
 
-CLI Email Leak Leak Search (Style: E0)
+#CLI Email Leak Leak Search (Style: E0)
 -  <img width="856" height="483" alt="image" src="https://github.com/user-attachments/assets/03b9123e-9d34-4171-93ae-643518efd0e5" />
 
-CLI Vector geo info sniper (Style: E0)
+#CLI Vector geo info sniper (Style: E0)
 - <img width="694" height="414" alt="image" src="https://github.com/user-attachments/assets/d88af67d-f7e1-4de0-97a9-afd2bdb58502" />
 
 # Graph GUI examples
 - <img width="625" height="856" alt="image" src="https://github.com/user-attachments/assets/aac1d86c-1f39-4e2c-8338-08318e76b051" />
   <img width="1233" height="805" alt="image" src="https://github.com/user-attachments/assets/9f0b71cc-b02d-4e3f-ad48-fbd49061f180" />
+
 
 
 
