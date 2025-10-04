@@ -20,7 +20,7 @@
 
 ---
 
-## 📁 Repo structure (example)
+### 📁 Repo structure (example)
 vector/
 ├─ vector.py
 ├─ requirements.txt
@@ -32,7 +32,7 @@ vector/
 
 ---
 
-#🚀 Quick Start
+####🚀 Quick Start
 
 #Requirements
 - Python 3.8+
@@ -105,6 +105,7 @@ vector/
 # Graph GUI examples
 - <img width="625" height="856" alt="image" src="https://github.com/user-attachments/assets/aac1d86c-1f39-4e2c-8338-08318e76b051" />
   <img width="1233" height="805" alt="image" src="https://github.com/user-attachments/assets/9f0b71cc-b02d-4e3f-ad48-fbd49061f180" />
+
 
 
 
