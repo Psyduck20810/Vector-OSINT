@@ -67,7 +67,7 @@ vector/
 
   Also check links.md for configurable social endpoints and provider lists.
 
-#❓ Usage Examples
+# ❓ Usage Examples
 - General help
   python vector.py --help
 
@@ -105,6 +105,30 @@ vector/
 # Graph GUI examples
 - <img width="625" height="856" alt="image" src="https://github.com/user-attachments/assets/aac1d86c-1f39-4e2c-8338-08318e76b051" />
   <img width="1233" height="805" alt="image" src="https://github.com/user-attachments/assets/9f0b71cc-b02d-4e3f-ad48-fbd49061f180" />
+
+# 🧾 Help & Tips
+- Always test on accounts you own or have explicit permission to analyze.
+  Rate limits may apply for certain service queries — respect provider rules.
+  For best results, configure any available API keys in config.json.  
+
+# 🤝 Contributing
+- Contributions, issues and feature requests are welcome. Please:
+  1. Fork the repository
+  2. Create a feature branch
+     git checkout -b feature/your-feature
+  3. Commit your changes
+     git commit -m "Add feature"
+  4. Push to your branch
+     git push origin feature/your-feature
+  5. Open a Pull Request
+
+ # 📜 License & Disclaimer
+ - Disclaimer: This tool is for educational and authorized testing only. The author and contributors are not responsible for misuse. Make sure you have explicit permission before scanning     or collecting information about any person or system.
+   Author & Credits: originally by Thesaderror and H4wK1n6 (as stated in original project).
+
+# 📫 Contact / Links
+ - Project links and references: links.md
+   Edit config.json for custom settings
 
 
 
